@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -9,25 +9,37 @@ import { Repository } from 'typeorm';
 export class TeacherService {
   constructor(
     @InjectRepository(Teacher)
-    private usersRepository: Repository<Teacher>,
+    private teacherRepository: Repository<Teacher>,
   ) {}
-  create(createTeacherDto: CreateTeacherDto) {
-    return 'This action adds a new teacher';
+  async create(createTeacherDto: CreateTeacherDto): Promise<Teacher> {
+    const user = this.teacherRepository.create(createTeacherDto);
+    return this.teacherRepository.save(user);
   }
 
-  findAll() {
-    return `This action returns all teacher`;
+  async findAll() : Promise<Teacher[]> {
+    return await this.teacherRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} teacher`;
+  async findOne(id: number) {
+    return await this.teacherRepository.findOneBy({id});
   }
 
-  update(id: number, updateTeacherDto: UpdateTeacherDto) {
-    return `This action updates a #${id} teacher`;
+  async update(id: number, updateTeacherDto: UpdateTeacherDto) {
+    const user = await this.teacherRepository.findOneBy({ id });
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+
+    const updatedUser = Object.assign(user, updateTeacherDto);
+    return this.teacherRepository.save(updatedUser);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} teacher`;
+  async remove(id: number): Promise<string> {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+    await this.teacherRepository.delete(id);
+    return `User with ID ${id} has been deleted successfully`;
   }
 }
