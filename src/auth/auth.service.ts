@@ -21,7 +21,6 @@ export class AuthService {
 
   async login(user: any) {
     const userExist = await this.userService.findOneExistUser(user.username, user.password);
-    console.log(userExist)
     if (userExist){
       const payload = { username: user.username, sub: user.id };
       return {

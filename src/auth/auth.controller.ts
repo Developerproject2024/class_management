@@ -17,7 +17,6 @@ export class AuthController {
   @ApiUnauthorizedResponse({status: 401, description: 'No autorizado' })
   @ApiNotFoundResponse({status: 404, description: 'No existe el usuario' })
   async login(@Body() loginAuthDto: LoginAuthDto) {
-    console.log('fabio', loginAuthDto)
     return this.authService.login(loginAuthDto);
   }
 }
