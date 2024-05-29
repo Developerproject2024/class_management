@@ -7,7 +7,7 @@ import { Teacher } from './entities/teacher.entity';
 import { JwtAuthGuard } from 'src/auth/guard/jwt-auth.guard';
 
 @ApiTags('Teacher')
-@Controller('teacher')
+@Controller('teachers')
 export class TeacherController {
   constructor(private readonly teacherService: TeacherService) { }
 
