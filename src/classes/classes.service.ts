@@ -22,7 +22,10 @@ export class ClassesService {
     return this.classRepository.save(classe);
   }
   async findAll(): Promise<Classes[]> {
-    return await this.classRepository.find();
+    return await this.classRepository.find({
+      relations: ['teacher']
+    }
+    );
   }
 
   async findOne(id: number) {
