@@ -48,3 +48,31 @@ $ npm run start:dev
 $ http://localhost:3000/api
 ```
 
+## Crear Usuario Mysql
+
+```bash
+
+CREATE PROCEDURE CreateUser(
+  IN p_username VARCHAR(50),
+  IN p_password VARCHAR(100)
+)
+BEGIN
+  INSERT INTO user (username, password)
+  VALUES (p_username, p_password);
+END 
+
+
+CALL CreateUser('prueba@gmail.com', '$2a$10$aoDtISB.J.AP2wAwV6ocMOm0JkxBazqtUg/Ip/nGq3RyTuiU1gSMK');
+```
+
+## Credenciales login FRONTED
+
+```bash
+Correo Electronico : prueba@gmail.com
+Contraseña : myPassword123
+
+| ------------- | ------------- |
+| usuario   | prueba@gmail.com  |
+| password  | myPassword123  |
+
+```
