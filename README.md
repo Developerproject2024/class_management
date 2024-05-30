@@ -26,6 +26,15 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
+## Instalacin Docker Desktop
+
+
+```bash
+Descarcargar [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+$ docker-compose up -d
+```
+
 ## Installation
 
 ```bash
@@ -68,11 +77,9 @@ CALL CreateUser('prueba@gmail.com', '$2a$10$aoDtISB.J.AP2wAwV6ocMOm0JkxBazqtUg/I
 ## Credenciales login FRONTED
 
 ```bash
-Correo Electronico : prueba@gmail.com
-Contraseña : myPassword123
 
-| ------------- | ------------- |
-| usuario   | prueba@gmail.com  |
-| password  | myPassword123  |
+| ------------- | -------------     |
+| usuario       | prueba@gmail.com  |
+| password      | myPassword123     |
 
 ```
