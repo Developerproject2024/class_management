@@ -23,7 +23,7 @@ export class ClassesService {
   }
   async findAll(): Promise<Classes[]> {
     return await this.classRepository.find({
-      relations: ['teacher']
+      relations: ['teacher', 'students']
     }
     );
   }
@@ -70,15 +70,16 @@ export class ClassesService {
     if (!classe && !student) {
       throw new NotFoundException('Profesor not found');
     }
-    const existe = await this.classRepository.findOne({
-      where: { id: id},
-      relations: ['students'],
-    })
-    console.log('existe',existe)
-    // classe.students = [student]
+    // const existe = await this.classRepository.findOne({
+    //   where: { id: id},
+    //   relations: ['students'],
+    // })
+    // console.log('existe',existe)
+    classe.students = [student]
     // console.log(classe)
+    console.log(classe)
 
-    // return await this.classRepository.save(classe);
+    return await this.classRepository.save(classe);
   }
 
   async getStudentsByClaseId(claseId: number) {
@@ -89,6 +90,8 @@ export class ClassesService {
     if (!classe) {
         throw new NotFoundException('Clase not found');
     }
-    return classe.students;
+    
+    console.log('entoo', classe)
+    return await this.classRepository.save(classe);
 }
 }

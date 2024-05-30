@@ -40,7 +40,7 @@ $ npm install
 $ npm run start:dev
 ```
 
-## Swwager
+## Swagger
 
 ```bash
 
