@@ -1,5 +1,5 @@
 import { IsEmail, IsString } from "class-validator";
-import { Class } from "src/classes/entities/class.entity";
+import { Classes } from "src/classes/entities/class.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -19,6 +19,6 @@ export class Teacher {
     @IsEmail()
     readonly email: string; 
 
-    @OneToMany(() => Class, classes => classes.teacher)
-    classes: Class[];
+    @OneToMany(() => Classes, classes => classes.teacher)
+    classes: Classes[];
 }

@@ -1,11 +1,12 @@
-import { IsEmail, IsString } from "class-validator";
+
+import { IsString } from "class-validator";
 import { Student } from "src/students/entities/student.entity";
 import { Teacher } from "src/teacher/entities/teacher.entity";
 import { Column, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
-export class Class {
+export class Classes {
     @PrimaryGeneratedColumn()
     readonly id: number;
 
@@ -15,11 +16,7 @@ export class Class {
 
     @Column()
     @IsString()
-    readonly last_name: string;
-
-    @Column()
-    @IsString()
-    readonly descripcion: string;
+    readonly description: string;
 
     @ManyToOne(() => Teacher, teacher => teacher.classes)
     teacher: Teacher;

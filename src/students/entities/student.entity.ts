@@ -1,5 +1,5 @@
 import { IsEmail, IsString } from "class-validator";
-import { Class } from "src/classes/entities/class.entity";
+import { Classes } from "src/classes/entities/class.entity";
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
@@ -19,7 +19,7 @@ export class Student {
     @IsEmail()
     readonly email: string;
 
-    @ManyToMany(() => Class, classe => classe.students)
+    @ManyToMany(() => Classes, classe => classe.students)
     @JoinTable()
-    classes: Class[];
+    classes: Classes[];
 }

@@ -10,29 +10,29 @@ export class StudentsService {
   
   constructor(
     @InjectRepository(Student)
-    private teacherRepository: Repository<Student>,
+    private studentsRepository: Repository<Student>,
   ) {}
-  async create(createTeacherDto: CreateStudentDto): Promise<Student> {
-    const user = this.teacherRepository.create(createTeacherDto);
-    return this.teacherRepository.save(user);
+  async create(createStudentDto: CreateStudentDto): Promise<Student> {
+    const user = this.studentsRepository.create(createStudentDto);
+    return this.studentsRepository.save(user);
   }
 
   async findAll() : Promise<Student[]> {
-    return await this.teacherRepository.find();
+    return await this.studentsRepository.find();
   }
 
   async findOne(id: number) {
-    return await this.teacherRepository.findOneBy({id});
+    return await this.studentsRepository.findOneBy({id});
   }
 
   async update(id: number, updateStudentDto: UpdateStudentDto) {
-    const user = await this.teacherRepository.findOneBy({ id });
+    const user = await this.studentsRepository.findOneBy({ id });
     if (!user) {
       throw new NotFoundException(`User with ID ${id} not found`);
     }
 
     const updatedUser = Object.assign(user, updateStudentDto);
-    return this.teacherRepository.save(updatedUser);
+    return this.studentsRepository.save(updatedUser);
   }
 
   async remove(id: number): Promise<string> {
@@ -40,7 +40,7 @@ export class StudentsService {
     if (!user) {
       throw new NotFoundException(`User with ID ${id} not found`);
     }
-    await this.teacherRepository.delete(id);
+    await this.studentsRepository.delete(id);
     return `User with ID ${id} has been deleted successfully`;
   }
 }
